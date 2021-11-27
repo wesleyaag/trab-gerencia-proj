@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const item_estoque_schema = new mongoose.Schema({
+const item_vitrine_schema = new mongoose.Schema({
     nome : {
         type : String,
         required : true
@@ -15,7 +15,11 @@ const item_estoque_schema = new mongoose.Schema({
         type : String,
     },
 
-    custo : {
+    foto : {
+        type : String,
+    },
+
+    preço : {
         type : double,
         required : true
     },
@@ -36,5 +40,5 @@ const item_estoque_schema = new mongoose.Schema({
 
 });
 
-const item_estoque = mongoose.model("item_estoque", item_estoque_schema);
-module.exports = item_estoque;
+const item_vitrine = mongoose.model("item_vitrine", item_vitrine_schema);
+module.exports = item_vitrine;
