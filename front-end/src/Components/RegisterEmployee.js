@@ -7,6 +7,7 @@ import { border, Box } from '@material-ui/system';
 import { useState } from 'react';
 import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
+import axios from 'axios';
 
 
 function Register(){
@@ -14,9 +15,21 @@ function Register(){
     const [Nome, setNome] = useState('')
     const [Email, setEmail] = useState('')
     const [Senha, setSenha] = useState('')
-    const [Telefone, setTelefone] = useState('')
-    const [Endereco, setEndereco] = useState('')
+    const [Telefone, setCpf] = useState('')
     const [Cargo, setCargo] = useState('')
+
+    const SubmitForm = async () => {
+        var Dados = {}
+        Dados.nome = Nome
+        Dados.email = Email
+        Dados.senha = Senha
+        Dados.cpf = Telefone
+        Dados.cargo = Cargo
+        console.log(Dados)
+        await axios.post('http://localhost:8082/funcionario', Dados).then(response => {
+            alert(response.data.msg)
+        })
+    }
 
     return(
         <div className="Login">
@@ -43,10 +56,7 @@ function Register(){
                                         <TextField type="password" id="Senha" label="Senha" variant="outlined" sx={{m: 2}} onChange={(e) => setSenha(e.target.value)}/>
                                     </Grid>
                                     <Grid item>
-                                        <TextField id="Telefone" label="Telefone" variant="outlined" sx={{m: 2}} onChange={(e) => setTelefone(e.target.value)}/>
-                                    </Grid>
-                                    <Grid item>
-                                        <TextField id="Endereço" label="Endereço" variant="outlined" sx={{m: 2}} onChange={(e) => setEndereco(e.target.value)}/>
+                                        <TextField id="CPF" label="Cpf" variant="outlined" sx={{m: 2}} onChange={(e) => setCpf(e.target.value)}/>
                                     </Grid>
                                     <Grid item>
                                     <Select
@@ -58,7 +68,7 @@ function Register(){
                                     </Select>
                                     </Grid>
                                     <Grid item>
-                                        <Button variant="contained" sx={{m: 2}}>Registrar</Button>
+                                        <Button variant="contained" sx={{m: 2}} onClick={SubmitForm}>Registrar</Button>
                                     </Grid>
                             </Grid>
                         </Grid>

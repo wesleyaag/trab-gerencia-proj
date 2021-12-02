@@ -9,16 +9,16 @@ import axios from 'axios';
 
 function Register(){
 
-    const SubmitForm = () => {
+    const SubmitForm = async () => {
         var Dados = {}
         Dados.nome = Nome
         Dados.email = Email
         Dados.senha = Senha
-        Dados.targetelefone = Telefone
-        Dados.endereco = Endereco
+        Dados.telefone = Telefone
+        Dados.endereço = Endereco
         console.log(Dados)
-        axios.post('http://localhost:8082/cliente', Dados).then(response => {
-            alert(response.data)
+        await axios.post('http://localhost:8082/cliente', Dados).then(response => {
+            alert(response.data.msg)
         })
     }
 
