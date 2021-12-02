@@ -4,19 +4,21 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import { border, Box } from '@material-ui/system';
+import { useState } from 'react';
 
 import { Link } from "react-router-dom";
 
 function Login(){
+
+    const [Email, setEmail] = useState('')
+    const [Senha, setSenha] = useState('')
 
     return(
         <div className="Login">
                 <Grid container
                 justifyContent="center"
                 alignItems="center"
-                direction={"row"}
-                sx={{border: '1px solid black'}}
-                
+                direction={"row"}             
                 >
                         <Grid item>
                             <Grid container
@@ -26,10 +28,10 @@ function Login(){
                                     alignItems="center"
                                     >
                                     <Grid item>           
-                                        <TextField id="Email" label="Email" variant="outlined" sx={{m: 2}}/>
+                                        <TextField id="Email" label="Email" variant="outlined" sx={{m: 2}} onChange={(e) => setEmail(e.target.value)}/>
                                     </Grid>
                                     <Grid item>
-                                        <TextField id="Senha" label="Senha" variant="outlined" sx={{m: 2}}/>
+                                        <TextField id="Senha" type="password" label="Senha" variant="outlined" sx={{m: 2}} onChange={(e) => setSenha(e.target.value)}/>
                                     </Grid>
                                     <Grid item>
                                         <Button variant="contained" sx={{m: 2}}>Login</Button>

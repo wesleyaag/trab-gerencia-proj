@@ -5,28 +5,18 @@ import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import { border, Box } from '@material-ui/system';
 import { useState } from 'react';
-import axios from 'axios';
+import Select from '@material-ui/core/Select';
+import { MenuItem } from '@material-ui/core';
+
 
 function Register(){
-
-    const SubmitForm = () => {
-        var Dados = {}
-        Dados.nome = Nome
-        Dados.email = Email
-        Dados.senha = Senha
-        Dados.targetelefone = Telefone
-        Dados.endereco = Endereco
-        console.log(Dados)
-        axios.post('http://localhost:8082/cliente', Dados).then(response => {
-            alert(response.data)
-        })
-    }
 
     const [Nome, setNome] = useState('')
     const [Email, setEmail] = useState('')
     const [Senha, setSenha] = useState('')
     const [Telefone, setTelefone] = useState('')
     const [Endereco, setEndereco] = useState('')
+    const [Cargo, setCargo] = useState('')
 
     return(
         <div className="Login">
@@ -59,7 +49,16 @@ function Register(){
                                         <TextField id="Endereço" label="Endereço" variant="outlined" sx={{m: 2}} onChange={(e) => setEndereco(e.target.value)}/>
                                     </Grid>
                                     <Grid item>
-                                        <Button variant="contained" sx={{m: 2}} onClick={SubmitForm} >Registrar</Button>
+                                    <Select
+                                        onChange={(e) => setCargo(e.target.value)}
+                                        displayEmpty
+                                        >
+                                        <MenuItem value="Funcionario">Funcionário</MenuItem>
+                                        <MenuItem value="Entregador">Entregador</MenuItem>
+                                    </Select>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button variant="contained" sx={{m: 2}}>Registrar</Button>
                                     </Grid>
                             </Grid>
                         </Grid>
