@@ -15,7 +15,7 @@ function Register(){
     const [Nome, setNome] = useState('')
     const [Email, setEmail] = useState('')
     const [Senha, setSenha] = useState('')
-    const [Telefone, setCpf] = useState('')
+    const [cpf, setCpf] = useState('')
     const [Cargo, setCargo] = useState('')
 
     const SubmitForm = async () => {
@@ -23,7 +23,7 @@ function Register(){
         Dados.nome = Nome
         Dados.email = Email
         Dados.senha = Senha
-        Dados.cpf = Telefone
+        Dados.cpf = cpf
         Dados.cargo = Cargo
         console.log(Dados)
         await axios.post('http://localhost:8082/funcionario', Dados).then(response => {

@@ -7,6 +7,8 @@ import App from '../App'
 import Login from '../Components/Login.js'
 import Register from '../Components/Register.js'
 import RegisterEmployee from '../Components/RegisterEmployee.js'
+import ListCustomer from "../Components/ListCustomer";
+import ListEmployee from "../Components/ListEmployee"
 
 function Router(){
     return(
@@ -16,6 +18,8 @@ function Router(){
             <Route path="Login" element={<Login />} />
             <Route path="Register" element={<Register/>}/> 
             <Route path="RegisterEmployee" element={<RegisterEmployee/>}/>
+            <Route path="ListCustomer" element={<ListCustomer/>}/>
+            <Route path="ListEmployee" element={<ListEmployee/>}/>
         </Route>
         </Routes>
     </BrowserRouter>

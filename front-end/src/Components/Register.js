@@ -15,11 +15,7 @@ function Register() {
         Dados.email = Email
         Dados.senha = Senha
         Dados.telefone = Telefone
-<<<<<<< HEAD
         Dados.endereço = Endereco
-=======
-        Dados.endereco = Endereco
->>>>>>> a7c5be9e0c5dc95bba3d35e7ca9b8f06d7e621ae
         console.log(Dados)
         await axios.post('http://localhost:8082/cliente', Dados).then(response => {
             alert(response.data.msg)
