@@ -5,18 +5,13 @@ const item_estoque_schema = new mongoose.Schema({
         type : String,
         required : true
     },
-        
-    id : {
-        type : int,
-        required : true
-    },
 
     descricao : {
         type : String,
     },
 
     custo : {
-        type : double,
+        type : Number, //float
         required : true
     },
 
@@ -26,7 +21,7 @@ const item_estoque_schema = new mongoose.Schema({
     },
 
     quantidade : {
-        type : int,
+        type : Number, //int
         required : true
     },
 

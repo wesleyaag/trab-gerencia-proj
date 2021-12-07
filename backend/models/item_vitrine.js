@@ -7,7 +7,7 @@ const item_vitrine_schema = new mongoose.Schema({
     },
         
     id : {
-        type : int,
+        type : Number, //int
         required : true
     },
 
@@ -20,7 +20,7 @@ const item_vitrine_schema = new mongoose.Schema({
     },
 
     preço : {
-        type : double,
+        type : Number, //float
         required : true
     },
 
@@ -30,7 +30,7 @@ const item_vitrine_schema = new mongoose.Schema({
     },
 
     quantidade : {
-        type : int,
+        type : Number, //int
         required : true
     },
 
