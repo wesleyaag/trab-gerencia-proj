@@ -17,8 +17,9 @@ import { ListItemText } from '@material-ui/core';
 import { ListItemIcon } from '@material-ui/core';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import { Box } from '@material-ui/system';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PersonAdd from '@material-ui/icons/PersonAdd';
+import WarehouseIcon from '@material-ui/icons/Person';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 function App() {
@@ -98,6 +99,22 @@ function App() {
                   <PersonAdd />
                 </ListItemIcon>
                 <ListItemText primary={"Cadastrar funcionário"} />
+              </ListItem>
+              <ListItem button
+              component={Link}
+              to="/ListItemInventory">
+                <ListItemIcon>
+                  <WarehouseIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Estoque"} />
+              </ListItem>
+              <ListItem button
+              component={Link}
+              to="/ListEmployee">
+                <ListItemIcon>
+                  <ShoppingCartIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Carrinho"} />
               </ListItem>
           </List>
         </Box>

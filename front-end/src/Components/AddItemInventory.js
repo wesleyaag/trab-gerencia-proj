@@ -1,21 +1,24 @@
-import * as React from 'react';
+import { Typography } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import { Button, Typography } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import { useState } from 'react';
 import axios from 'axios';
+import * as React from 'react';
 
-function Register() {
+
+
+function AddItemInventory() {
 
     const SubmitForm = async () => {
         var Dados = {}
         Dados.nome = Nome
-        Dados.email = Email
-        Dados.senha = Senha
-        Dados.telefone = Telefone
-        Dados.endereço = Endereco
+        Dados.descricao = Descricao
+        Dados.custo = Custo
+        Dados.unidade = Unidade
+        Dados.quantidade = Quantidade
         console.log(Dados)
-        await axios.post('http://localhost:8082/cliente', Dados).then(response => {
+        await axios.post('http://localhost:8082/estoque', Dados).then(response => {
             alert(response.data.msg)
         })
             .catch(err => {
@@ -24,14 +27,14 @@ function Register() {
     }
 
     const [Nome, setNome] = useState('')
-    const [Email, setEmail] = useState('')
-    const [Senha, setSenha] = useState('')
-    const [Telefone, setTelefone] = useState('')
-    const [Endereco, setEndereco] = useState('')
+    const [Descricao, setDescricao] = useState('')
+    const [Custo, setCusto] = useState('')
+    const [Unidade, setUnidade] = useState('')
+    const [Quantidade, setQuantidade] = useState('')
 
-    return (
-        <div className="Login">
-            <Typography variant="h5" component="div" m={2} fontFamily="Times New Roman">Registar-se :</Typography>
+    return(
+        <div>
+            <Typography variant="h5" component="div" m={2} fontFamily="Times New Roman">Adicionar item no estoque :</Typography>
             <Grid container
                 justifyContent="center"
                 alignItems="center"
@@ -49,16 +52,16 @@ function Register() {
                             <TextField id="Nome" label="Nome" variant="outlined" sx={{ m: 2 }} onChange={(e) => setNome(e.target.value)} />
                         </Grid>
                         <Grid item>
-                            <TextField type="email" id="Email" label="Email" variant="outlined" sx={{ m: 2 }} onChange={(e) => setEmail(e.target.value)} />
+                            <TextField  id="Descrição" label="Descrição" variant="outlined" sx={{ m: 2 }} onChange={(e) => setDescricao(e.target.value)} />
                         </Grid>
                         <Grid item>
-                            <TextField type="password" id="Senha" label="Senha" variant="outlined" sx={{ m: 2 }} onChange={(e) => setSenha(e.target.value)} />
+                            <TextField id="Custo" label="Custo" variant="outlined" sx={{ m: 2 }} onChange={(e) => setCusto(e.target.value)} />
                         </Grid>
                         <Grid item>
-                            <TextField id="Telefone" label="Telefone" variant="outlined" sx={{ m: 2 }} onChange={(e) => setTelefone(e.target.value)} />
+                            <TextField id="Unidade" label="Unidade" variant="outlined" sx={{ m: 2 }} onChange={(e) => setUnidade(e.target.value)} />
                         </Grid>
                         <Grid item>
-                            <TextField id="Endereço" label="Endereço" variant="outlined" sx={{ m: 2 }} onChange={(e) => setEndereco(e.target.value)} />
+                            <TextField id="Quantidade" label="Quantidade" variant="outlined" sx={{ m: 2 }} onChange={(e) => setQuantidade(e.target.value)} />
                         </Grid>
                         <Grid item>
                             <Button variant="contained" sx={{ m: 2 }} onClick={SubmitForm} >Registrar</Button>
@@ -68,10 +71,8 @@ function Register() {
 
             </Grid>
 
-
         </div>
-    );
-
+    )
 }
 
-export default Register;
+export default AddItemInventory;

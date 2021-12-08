@@ -9,6 +9,8 @@ import Register from '../Components/Register.js'
 import RegisterEmployee from '../Components/RegisterEmployee.js'
 import ListCustomer from "../Components/ListCustomer";
 import ListEmployee from "../Components/ListEmployee"
+import AddItemInventory from "../Components/AddItemInventory" 
+import ListItemInventory from "../Components/ListItemInventory";
 
 function Router(){
     return(
@@ -20,6 +22,8 @@ function Router(){
             <Route path="RegisterEmployee" element={<RegisterEmployee/>}/>
             <Route path="ListCustomer" element={<ListCustomer/>}/>
             <Route path="ListEmployee" element={<ListEmployee/>}/>
+            <Route path="AddItemInventory" element={<AddItemInventory/>}/>
+            <Route path="ListItemInventory" element={<ListItemInventory/>}/>
         </Route>
         </Routes>
     </BrowserRouter>

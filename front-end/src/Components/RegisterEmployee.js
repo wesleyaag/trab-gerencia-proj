@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
 import axios from 'axios';
+import InputMask from 'react-input-mask'
 
 
 function Register(){
@@ -33,6 +34,7 @@ function Register(){
 
     return(
         <div className="Login">
+            <Typography variant="h5" component="div" m={2} fontFamily="Times New Roman">Registrar Funcionário :</Typography>
                 <Grid container
                 justifyContent="center"
                 alignItems="center"
@@ -56,12 +58,15 @@ function Register(){
                                         <TextField type="password" id="Senha" label="Senha" variant="outlined" sx={{m: 2}} onChange={(e) => setSenha(e.target.value)}/>
                                     </Grid>
                                     <Grid item>
-                                        <TextField id="CPF" label="Cpf" variant="outlined" sx={{m: 2}} onChange={(e) => setCpf(e.target.value)}/>
+                                        <TextField id="CPF" label="Cpf" variant="outlined" sx={{m: 2}} onChange={(e) => setCpf(e.target.value)}>
+                                            <InputMask mask="999.999.999/99" maskChar=" "></InputMask>
+                                        </TextField>
                                     </Grid>
                                     <Grid item>
                                     <Select
                                         onChange={(e) => setCargo(e.target.value)}
                                         displayEmpty
+                                        
                                         >
                                         <MenuItem value="Funcionario">Funcionário</MenuItem>
                                         <MenuItem value="Entregador">Entregador</MenuItem>
