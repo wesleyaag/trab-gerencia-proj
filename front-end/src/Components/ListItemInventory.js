@@ -134,7 +134,7 @@ function ListItemInventory(){
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: theme.palette.success.main,
           color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
