@@ -135,7 +135,7 @@ function ListEmployee() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: theme.palette.primary.dark,
+          backgroundColor: theme.palette.success.dark,
           color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
