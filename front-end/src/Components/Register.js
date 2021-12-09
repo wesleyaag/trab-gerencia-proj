@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import axios from 'axios';
+import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/core';
 
 function Register() {
 
@@ -15,12 +17,18 @@ function Register() {
         Dados.telefone = Telefone
         Dados.endereço = Endereco
         console.log(Dados)
-        await axios.post('http://localhost:8082/cliente', Dados).then(response => {
-            alert(response.data.msg)
+        await axios.post('http://localhost:8082/cliente', Dados).then(resp => {
+            setOpenSnack(true)
+            setMessage(resp.data.msg)
+            setColor("success")
         })
             .catch(err => {
                 console.log(err);
             })
+    }
+
+    function handleCloseSnack(){
+        setOpenSnack(false)
     }
 
     const [Nome, setNome] = useState('')
@@ -28,6 +36,9 @@ function Register() {
     const [Senha, setSenha] = useState('')
     const [Telefone, setTelefone] = useState('')
     const [Endereco, setEndereco] = useState('')
+    const [openSnack, setOpenSnack] = useState(false)
+    const [messageSnack, setMessage] = useState("")
+    const [colorSnack, setColor] = useState("")
 
     return (
         <div className="Login">
@@ -69,6 +80,16 @@ function Register() {
             </Grid>
 
 
+
+            <Snackbar
+                open={openSnack}
+                onClose={handleCloseSnack}
+                anchorOrigin={{vertical:'bottom', horizontal: 'center'}}
+            >
+                <Alert onClose={handleCloseSnack} severity={colorSnack == "" ? "success" : colorSnack} sx={{ width: '100%' }}>
+                {messageSnack}
+                </Alert>
+            </Snackbar>
         </div>
     );
 

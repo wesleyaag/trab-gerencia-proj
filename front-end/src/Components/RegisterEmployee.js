@@ -9,6 +9,8 @@ import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
 import axios from 'axios';
 import InputMask from 'react-input-mask'
+import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/core';
 
 
 function Register(){
@@ -18,6 +20,9 @@ function Register(){
     const [Senha, setSenha] = useState('')
     const [cpf, setCpf] = useState('')
     const [Cargo, setCargo] = useState('')
+    const [openSnack, setOpenSnack] = useState(false)
+    const [messageSnack, setMessage] = useState("")
+    const [colorSnack, setColor] = useState("")
 
     const SubmitForm = async () => {
         var Dados = {}
@@ -27,10 +32,18 @@ function Register(){
         Dados.cpf = cpf
         Dados.cargo = Cargo
         console.log(Dados)
-        await axios.post('http://localhost:8082/funcionario', Dados).then(response => {
-            alert(response.data.msg)
+        await axios.post('http://localhost:8082/funcionario', Dados).then(resp => {
+            setOpenSnack(true)
+            setMessage(resp.data.msg)
+            setColor("success")
         })
     }
+
+
+    function handleCloseSnack(){
+        setOpenSnack(false)
+    }
+
 
     return(
         <div className="Login">
@@ -80,6 +93,15 @@ function Register(){
                         
                 </Grid>
             
+                <Snackbar
+                open={openSnack}
+                onClose={handleCloseSnack}
+                anchorOrigin={{vertical:'bottom', horizontal: 'center'}}
+            >
+                <Alert onClose={handleCloseSnack} severity={colorSnack == "" ? "success" : colorSnack} sx={{ width: '100%' }}>
+                {messageSnack}
+                </Alert>
+            </Snackbar>
         
         </div>
     );

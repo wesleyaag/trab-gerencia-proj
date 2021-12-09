@@ -5,6 +5,8 @@ import { Button} from '@material-ui/core';
 import { useState } from 'react';
 import axios from 'axios';
 import * as React from 'react';
+import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/core';
 
 
 
@@ -18,8 +20,10 @@ function AddItemInventory() {
         Dados.unidade = Unidade
         Dados.quantidade = Quantidade
         console.log(Dados)
-        await axios.post('http://localhost:8082/estoque', Dados).then(response => {
-            alert(response.data.msg)
+        await axios.post('http://localhost:8082/estoque', Dados).then(resp => {
+            setOpenSnack(true)
+            setMessage(resp.data.msg)
+            setColor("success")
         })
             .catch(err => {
                 console.log(err);
@@ -31,6 +35,13 @@ function AddItemInventory() {
     const [Custo, setCusto] = useState('')
     const [Unidade, setUnidade] = useState('')
     const [Quantidade, setQuantidade] = useState('')
+    const [openSnack, setOpenSnack] = useState(false)
+    const [messageSnack, setMessage] = useState("")
+    const [colorSnack, setColor] = useState("")
+
+    function handleCloseSnack(){
+        setOpenSnack(false)
+    }
 
     return(
         <div>
@@ -70,6 +81,16 @@ function AddItemInventory() {
                 </Grid>
 
             </Grid>
+
+            <Snackbar
+                open={openSnack}
+                onClose={handleCloseSnack}
+                anchorOrigin={{vertical:'bottom', horizontal: 'center'}}
+            >
+                <Alert onClose={handleCloseSnack} severity={colorSnack == "" ? "success" : colorSnack} sx={{ width: '100%' }}>
+                {messageSnack}
+                </Alert>
+            </Snackbar>
 
         </div>
     )

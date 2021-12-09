@@ -128,7 +128,7 @@ function ListItemInventory(){
         
         await axios.post('http://localhost:8082/vitrine', itemVitrine).then(resp => {
             setOpenSnack(true)
-            setMessage(resp.data.mgs)
+            setMessage(resp.data.msg)
             setColor("success")
         })
             .catch(err => {
@@ -155,7 +155,7 @@ function ListItemInventory(){
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: theme.palette.success.main,
+          backgroundColor: theme.palette.error.main,
           color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
@@ -163,23 +163,8 @@ function ListItemInventory(){
         },
       }));
 
-    const styles = {
-        paperContainer: {
-            backgroundImage: `url(${InventoryBackground})`,
-            backgroundSize: 'cover',
-            height: '100%',
-            width: '100%'
-        }
-    };
-
     return(
-        <div>
-
-    <Paper style={styles.paperContainer} >
-        Estoque :
-    </Paper>
-
-    
+        <div> 
     
     <Button component={Link} to="/AddItemInventory">Adicionar item</Button>
         
