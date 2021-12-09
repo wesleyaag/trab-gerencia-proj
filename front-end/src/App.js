@@ -110,7 +110,7 @@ function App() {
               </ListItem>
               <ListItem button
               component={Link}
-              to="/ListEmployee">
+              to="/ShowCase">
                 <ListItemIcon>
                   <ShoppingCartIcon />
                 </ListItemIcon>

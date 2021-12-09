@@ -14,7 +14,6 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { styled } from '@material-ui/core/styles';
-import InventoryBackground from "../Content/Images/estoque.jpg"
 import SettingsIcon from '@material-ui/icons/Settings';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import StoreIcon from '@material-ui/icons/Store';
@@ -163,23 +162,11 @@ function ListItemInventory() {
         },
     }));
 
-    const styles = {
-        paperContainer: {
-            backgroundImage: `url(${InventoryBackground})`,
-            backgroundSize: 'cover',
-            height: '100%',
-            width: '100%'
-        }
-    };
 
     return (
         <div>
 
-            <Paper style={styles.paperContainer} >
-                Estoque :
-            </Paper>
-
-
+            <Typography variant="h5">Estoque :</Typography>
 
             <Button color="primary" variant="contained" component={Link} to="/AddItemInventory" >Adicionar item</Button>
 
