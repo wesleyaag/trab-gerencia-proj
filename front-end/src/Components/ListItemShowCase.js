@@ -86,8 +86,10 @@ function ListItemShowCase() {
         Dados.unidade = Unidade
         Dados.quantidade = Quantidade
         console.log(Dados)
-        await axios.put(`http://localhost:8082/vitrine/${value._id}`, Dados).then(response => {
-            alert(response.data.msg)
+        await axios.put(`http://localhost:8082/vitrine/${value._id}`, Dados).then(resp => {
+            setOpenSnack(true)
+            setMessage(resp.data.msg)
+            setColor("success")
         })
             .catch(err => {
                 console.log(err);

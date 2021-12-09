@@ -143,8 +143,10 @@ function ListItemInventory() {
         Dados.unidade = Unidade
         Dados.quantidade = Quantidade
         console.log(Dados)
-        await axios.put(`http://localhost:8082/estoque/${value._id}`, Dados).then(response => {
-            alert(response.data.msg)
+        await axios.put(`http://localhost:8082/estoque/${value._id}`, Dados).then(resp => {
+            setOpenSnack(true)
+            setMessage(resp.data.msg)
+            setColor("success")
         })
             .catch(err => {
                 console.log(err);
@@ -226,64 +228,7 @@ function ListItemInventory() {
         </Table>
     </TableContainer>   
 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 500 }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell width="20%" sx={{ textAlign: "left" }} align="right">Item</StyledTableCell>
-                            <StyledTableCell align="right">Custo</StyledTableCell>
-                            <StyledTableCell align="right">Unidade</StyledTableCell>
-                            <StyledTableCell align="right">Quantidade</StyledTableCell>
-                            <StyledTableCell align="right">Editar</StyledTableCell>
-                            <StyledTableCell align="right">Excluir</StyledTableCell>
-                            <StyledTableCell align="right">Adicionar na vitrine</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {listItems.map((i, index) => (
-                            <TableRow key={index}>
-                                <TableCell height="20px" component="th" scope="row">
-                                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                                        <ListItem >
-                                            <ListItemText
-                                                primary={<React.Fragment>
-                                                    <Typography
-                                                        sx={{ display: 'inline' }}
-                                                        component="span"
-                                                        fontSize="1.5rem"
-                                                        color="text.primary"
-                                                    >
-                                                        {i.nome}
-                                                    </Typography>
-                                                </React.Fragment>}
-                                                secondary={
-                                                    <React.Fragment>
-                                                        <Typography
-                                                            sx={{ display: 'inline' }}
-                                                            component="span"
-                                                            variant="body2"
-                                                            color="text.primary"
-                                                        >
-                                                            Descrição :
-                                                        </Typography>
-                                                        {i.descricao}
-                                                    </React.Fragment>
-                                                }
-                                            />
-                                        </ListItem>
-                                    </List>
-                                </TableCell>
-                                <TableCell align="right">{i.custo}</TableCell>
-                                <TableCell align="right">{i.unidade}</TableCell>
-                                <TableCell align="right">{i.quantidade}</TableCell>
-                                <TableCell align="right"><SettingsIcon onClick={() => editItemOpen(i)} /></TableCell>
-                                <TableCell align="right"><DeleteForeverIcon color="error" onClick={() => excludeDialogOpen(i)} /></TableCell>
-                                <TableCell align="right"><StoreIcon color="primary" onClick={() => AddItemShowCase(i)} /></TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            
 
             <Dialog
                 open={openExcludeDialog}

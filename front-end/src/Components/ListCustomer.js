@@ -135,7 +135,7 @@ function ListCustomer() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: theme.palette.success.main,
+          backgroundColor: theme.palette.primary.main,
           color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
