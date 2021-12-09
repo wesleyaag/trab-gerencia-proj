@@ -51,8 +51,8 @@ function App() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Quitanda
+          <Typography variant="h6" component={Link} to="/" color = "inherit"  sx={{ flexGrow: 1 }}>
+            Quitanda ATW
           </Typography>
           <Chip avatar={<AccountCircleIcon />} 
           label="Login" 
@@ -110,7 +110,7 @@ function App() {
               </ListItem>
               <ListItem button
               component={Link}
-              to="/ListEmployee">
+              to="/ShowCase">
                 <ListItemIcon>
                   <ShoppingCartIcon />
                 </ListItemIcon>
@@ -135,3 +135,12 @@ function App() {
 }
 
 export default App;
+
+
+/*<Typography variant="h6">Dê uma olhadinha na nossa vitrine de produtos!</Typography>
+<Button variant = "outlined"
+  color = "primary" 
+  component={Link} to="/ShowCase">
+  Ir para a vitrine
+</Button>
+*/
