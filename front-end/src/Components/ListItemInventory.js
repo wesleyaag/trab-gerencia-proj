@@ -154,20 +154,14 @@ function ListItemInventory() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-<<<<<<< HEAD
           backgroundColor: theme.palette.error.main,
           color: theme.palette.common.white,
-=======
-            backgroundColor: theme.palette.success.main,
-            color: theme.palette.common.white,
->>>>>>> 88914322794b694b88157d6e66a3e9706f17b97c
         },
         [`&.${tableCellClasses.body}`]: {
             fontSize: 14,
         },
     }));
 
-<<<<<<< HEAD
     return(
         <div> 
     
@@ -231,15 +225,6 @@ function ListItemInventory() {
             </TableBody>  
         </Table>
     </TableContainer>   
-=======
-
-    return (
-        <div>
-
-            <Typography variant="h5">Estoque :</Typography>
-
-            <Button color="primary" variant="contained" component={Link} to="/AddItemInventory" >Adicionar item</Button>
->>>>>>> 88914322794b694b88157d6e66a3e9706f17b97c
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="customized table">

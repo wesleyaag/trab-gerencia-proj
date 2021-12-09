@@ -135,13 +135,8 @@ function ListItemShowCase() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-<<<<<<< HEAD
           backgroundColor: theme.palette.warning.main,
           color: theme.palette.common.white,
-=======
-            backgroundColor: theme.palette.primary.main,
-            color: theme.palette.common.white,
->>>>>>> 88914322794b694b88157d6e66a3e9706f17b97c
         },
         [`&.${tableCellClasses.body}`]: {
             fontSize: 14,
