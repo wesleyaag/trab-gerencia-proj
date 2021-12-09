@@ -11,6 +11,7 @@ import ListCustomer from "../Components/ListCustomer";
 import ListEmployee from "../Components/ListEmployee"
 import AddItemInventory from "../Components/AddItemInventory" 
 import ListItemInventory from "../Components/ListItemInventory";
+import ShowCase from "../Components/ListItemShowCase"
 
 function Router(){
     return(
@@ -24,6 +25,7 @@ function Router(){
             <Route path="ListEmployee" element={<ListEmployee/>}/>
             <Route path="AddItemInventory" element={<AddItemInventory/>}/>
             <Route path="ListItemInventory" element={<ListItemInventory/>}/>
+            <Route path="ShowCase" element={<ShowCase/>}/>
         </Route>
         </Routes>
     </BrowserRouter>

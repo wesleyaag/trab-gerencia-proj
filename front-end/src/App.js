@@ -20,7 +20,7 @@ import { Box } from '@material-ui/system';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import WarehouseIcon from '@material-ui/icons/Person';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import StoreIcon from '@material-ui/icons/Store';
 
 function App() {
 
@@ -115,6 +115,14 @@ function App() {
                   <ShoppingCartIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Carrinho"} />
+              </ListItem>
+              <ListItem button
+              component={Link}
+              to="/ShowCase">
+                <ListItemIcon>
+                  <StoreIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Vitrine"} />
               </ListItem>
           </List>
         </Box>

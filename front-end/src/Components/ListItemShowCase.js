@@ -27,8 +27,9 @@ import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-function ListItemInventory(){
+function ListItemShowCase(){
 
     const [Nome, setNome] = useState('')
     const [Descricao, setDescricao] = useState('')
@@ -44,18 +45,18 @@ function ListItemInventory(){
     const [colorSnack, setColor] = useState("")
 
     useEffect(() => {
-    async function getListItemInventory(){
-        await axios.get("http://localhost:8082/estoque").then(
-            resp => {
-                console.log(resp.data)
-                setItems(resp.data)
-            }
-        ).catch(err => {
-            return err.error
-        })
-    }
-
-    getListItemInventory()
+        async function getListItemShowCase(){
+            await axios.get("http://localhost:8082/vitrine").then(
+                resp => {
+                    console.log(resp.data)
+                    setItems(resp.data)
+                }
+            ).catch(err => {
+                return err.error
+            })
+        }
+    
+        getListItemShowCase()
     },[])
 
     function editItemOpen(value){
@@ -77,8 +78,25 @@ function ListItemInventory(){
         setOpenExcludeDialog(false)
     }
 
+    const editItem = async (value) => {
+        var Dados = {}
+        Dados.nome = Nome
+        Dados.descricao = Descricao
+        Dados.custo = Custo
+        Dados.unidade = Unidade
+        Dados.quantidade = Quantidade
+        console.log(Dados)
+        await axios.put(`http://localhost:8082/vitrine/${value._id}`, Dados).then(response => {
+            alert(response.data.msg)
+        })
+            .catch(err => {
+                console.log(err);
+            })
+        updateTable()
+    }
+
     async function excludeItem(value){
-        await axios.delete(`http://localhost:8082/estoque/${value._id}`).then(resp => {
+        await axios.delete(`http://localhost:8082/vitrine/${value._id}`).then(resp => {
             setOpenSnack(true)
             setMessage(resp.data.mgs)
             setColor("success")
@@ -93,7 +111,7 @@ function ListItemInventory(){
     }
 
     async function updateTable(){
-        await axios.get('http://localhost:8082/estoque').then(resp => {
+        await axios.get('http://localhost:8082/vitrine').then(resp => {
               console.log(resp.data)
               setItems(resp.data)
           })
@@ -115,44 +133,6 @@ function ListItemInventory(){
         setQuantidade(value.quantidade)
     }
 
-    async function AddItemShowCase(value){
-        console.log(value)
-
-        var itemVitrine = {}
-
-        itemVitrine.nome = value.nome
-        itemVitrine.descricao = value.descricao
-        itemVitrine.custo = value.custo
-        itemVitrine.unidade = value.unidade
-        itemVitrine.quantidade = value.quantidade
-        
-        await axios.post('http://localhost:8082/vitrine', itemVitrine).then(resp => {
-            setOpenSnack(true)
-            setMessage(resp.data.mgs)
-            setColor("success")
-        })
-            .catch(err => {
-                console.log(err);
-            })
-    }
-
-    const editItem = async (value) => {
-        var Dados = {}
-        Dados.nome = Nome
-        Dados.descricao = Descricao
-        Dados.custo = Custo
-        Dados.unidade = Unidade
-        Dados.quantidade = Quantidade
-        console.log(Dados)
-        await axios.put(`http://localhost:8082/estoque/${value._id}`, Dados).then(response => {
-            alert(response.data.msg)
-        })
-            .catch(err => {
-                console.log(err);
-            })
-        updateTable()
-    }
-
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: theme.palette.primary.main,
@@ -163,37 +143,20 @@ function ListItemInventory(){
         },
       }));
 
-    const styles = {
-        paperContainer: {
-            backgroundImage: `url(${InventoryBackground})`,
-            backgroundSize: 'cover',
-            height: '100%',
-            width: '100%'
-        }
-    };
-
     return(
         <div>
 
-    <Paper style={styles.paperContainer} >
-        Estoque :
-    </Paper>
-
-    
-    
-    <Button component={Link} to="/AddItemInventory">Adicionar item</Button>
-        
-    <TableContainer component={Paper}>
+<TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
             <TableRow>
                 <StyledTableCell width="20%" sx={{textAlign: "left"}}  align="right">Item</StyledTableCell>
-                <StyledTableCell align="right">Custo</StyledTableCell>
+                <StyledTableCell align="right">Preço</StyledTableCell>
                 <StyledTableCell align="right">Unidade</StyledTableCell>
                 <StyledTableCell align="right">Quantidade</StyledTableCell>
                 <StyledTableCell align="right">Editar</StyledTableCell>
                 <StyledTableCell align="right">Excluir</StyledTableCell>
-                <StyledTableCell align="right">Adicionar na vitrine</StyledTableCell>
+                <StyledTableCell align="right">Adicionar no carrinho</StyledTableCell>
             </TableRow>
             </TableHead>
             <TableBody>
@@ -235,7 +198,7 @@ function ListItemInventory(){
                 <TableCell align="right">{i.quantidade}</TableCell>
                 <TableCell align="right"><SettingsIcon onClick={() => editItemOpen(i)}/></TableCell>
                 <TableCell align="right"><DeleteForeverIcon color="error" onClick={() => excludeDialogOpen(i)}/></TableCell>
-                <TableCell align="right"><StoreIcon color="primary" onClick={() => AddItemShowCase(i)}/></TableCell>
+                <TableCell align="right"><ShoppingCartIcon color="primary" onClick={() => excludeDialogOpen(i)}/></TableCell>
             </TableRow>
             ))}   
             </TableBody>  
@@ -315,8 +278,9 @@ function ListItemInventory(){
           {messageSnack}
         </Alert>
       </Snackbar>
-    </div>
+
+        </div>
     )
 }
 
-export default ListItemInventory;
+export default ListItemShowCase

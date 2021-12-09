@@ -5,21 +5,12 @@ const item_vitrine_schema = new mongoose.Schema({
         type : String,
         required : true
     },
-        
-    id : {
-        type : Number, //int
-        required : true
-    },
 
     descricao : {
         type : String,
     },
 
-    foto : {
-        type : String,
-    },
-
-    preço : {
+    custo : {
         type : Number, //float
         required : true
     },
